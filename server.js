@@ -9,13 +9,14 @@ app.use(express.json())
 // include and initialize the rollbar library with your access token
 var Rollbar = require('rollbar')
 var rollbar = new Rollbar({
-  accessToken: '8954bc62b5cd4e57b0be502207189c18',
-  captureUncaught: true,
-  captureUnhandledRejections: true,
+    accessToken: '8954bc62b5cd4e57b0be502207189c18',
+    captureUncaught: true,
+    captureUnhandledRejections: true,
 })
 
 // record a generic message and send it to Rollbar
 rollbar.log('Hello world!')
+app.use(rollbar.errorHandler());
 
 app.get('/', (req, res) => {
     rollbar.info('Page opened successfully')
