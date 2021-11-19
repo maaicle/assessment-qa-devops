@@ -16,7 +16,7 @@ var rollbar = new Rollbar({
 
 // record a generic message and send it to Rollbar
 rollbar.log('Hello world!')
-app.use(rollbar.errorHandler());
+
 
 app.get('/', (req, res) => {
     rollbar.info('Page opened successfully')
@@ -95,6 +95,8 @@ app.get('/api/player', (req, res) => {
         res.sendStatus(400)
     }
 })
+
+app.use(rollbar.errorHandler());
 
 const port = process.env.PORT || 3000
 
