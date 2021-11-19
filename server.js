@@ -18,18 +18,18 @@ var rollbar = new Rollbar({
 rollbar.log('Hello world!')
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'))
     rollbar.info('Page opened successfully')
+    res.sendFile(path.join(__dirname, 'public/index.html'))
 })
 
 app.get('/styles', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.css'))
     rollbar.info('css file loaded successfully')
+    res.sendFile(path.join(__dirname, 'public/index.css'))
 })
 
 app.get('/js', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.js'))
     rollbar.info('js file loaded successfully')
+    res.sendFile(path.join(__dirname, 'public/index.js'))
 })
 
 
@@ -38,8 +38,8 @@ app.get('/api/robots', (req, res) => {
         res.status(200).send(botsArr)
     } catch (error) {
         console.log('ERROR GETTING BOTS', error)
+        rollbar.error(error)
         res.sendStatus(400)
-        rollbar.info(error)
     }
 })
 
